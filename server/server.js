@@ -2,13 +2,19 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+//import routes
+const items = require('./routes/api/items');
+const cities = require('./routes/api/cities');
+
 const app = express();
 
+// Bodyparser Middleware
 app.use(bodyParser.json());
 
+//DB Config 
 const db = require('./config/keys.js').mongoURI;
-console.log(db)
 
+//Connect to Mondo
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(()=> console.log('MongoDB Connected...'))
@@ -16,6 +22,10 @@ mongoose
   
 mongoose.Promise = global.Promise;
 
-  const port = process.env.PORT || 5000;
+// Use routes
+app.use('/api/items', items);
+app.use('/api/cities', cities);
 
-  app.listen(port, () => console.log(`Server started on port ${port}`));
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => console.log(`Server started on port ${port}`));
