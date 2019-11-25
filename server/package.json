@@ -4,8 +4,8 @@
   "description": "MYtinerary App built with MERN stack",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"nodemon server.js\" \"cd ../client && npm start\""
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
   "author": "Megan Vomvas",
   "license": "MIT",
