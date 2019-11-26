@@ -20,6 +20,7 @@ router.post('/', (req, res) => {
     const newCity = new City({
         name: req.body.name,
         country: req.body.country,
+        imageUrl: req.body.imageUrl,
     });
     newCity.save().then(city => res.json(city))
         .catch(err => console.log(err));

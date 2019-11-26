@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 //import routes
 const items = require('./routes/api/items');
@@ -10,6 +11,7 @@ const app = express();
 
 // Bodyparser Middleware
 app.use(bodyParser.json());
+app.use(cors());
 
 //DB Config 
 const db = require('./config/keys.js').mongoURI;
