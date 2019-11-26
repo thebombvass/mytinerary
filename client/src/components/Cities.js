@@ -3,12 +3,17 @@ import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import uuid from 'uuid';
 
+//components
+import PostResource from './PostResource';
+
 export default class Cities extends Component {
   state = {
     loading: true,
     cities: null,
     search: "",
     filteredResults: [],
+    newCity: "",
+    newCountry: "",
   }
   
   async componentDidMount() {
@@ -28,6 +33,14 @@ export default class Cities extends Component {
     })})
   }
 
+  async updateNewCity(e) {
+    await this.setState({newCity: e.target.value});
+  }
+
+  async updateNewCountry(e) {
+    await this.setState({newCountry: e.target.value});
+  }
+
   // sendNewCity(name, country, imageUrl) {
 
   // }
@@ -38,20 +51,15 @@ export default class Cities extends Component {
 
         <h1>Cities</h1>
 
-        <Button 
-          color="dark" 
-          style={{marginBottom: '2rem'}}
-          onClick={()=> {
-            const name = prompt('Enter Item')
-            if(name) {
-              this.setState(state => ({
-                items: [...state.items, { id: uuid(), name }]
-              }));
-            }
-          }}
-        >Add City</Button>
+        <label htmlFor="searchBar"> Add City: </label>
+        <input id="searchBar" type="text" value ={this.state.newCity} onChange={this.updateNewCity.bind(this)}></input>
+        <label htmlFor="searchBar"> Add Country: </label>
+        <input id="searchBar" type="text" value ={this.state.newCountry} onChange={this.updateNewCountry.bind(this)}></input>
 
-        <label htmlFor="searchBar">Search List: </label>
+        <PostResource url="http://localhost:5000/api/cities" dataObject={{"name": this.state.newCity, "country": this.state.newCountry}}>  
+        </PostResource>
+
+        <label htmlFor="searchBar"> Search List: </label>
         <input id="searchBar" type="text" value ={this.state.search} onChange={this.updateSearch.bind(this)}></input>
 
         <ListGroup>
