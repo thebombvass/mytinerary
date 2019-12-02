@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import uuid from 'uuid';
 
 //components
 import PostResource from './PostResource';
 
 export default class Cities extends Component {
+  constructor(props) {
+    super(props)
+
+    this.getCities = this.getCities.bind(this);
+    this.clearFields = this.clearFields.bind(this);
+
+  }
+
   state = {
     loading: true,
     cities: null,
@@ -14,16 +21,21 @@ export default class Cities extends Component {
     filteredResults: [],
     newCity: "",
     newCountry: "",
+    newUrl: "",
   }
   
   async componentDidMount() {
+    this.timer = setInterval(()=> this.getCities(), 5000)
+  }
+
+  async getCities() {
     const url = "http://localhost:5000/api/cities";
     const response = await fetch(url);
     const data = await response.json();
     console.log(data);
     this.setState({cities: data});
-    this.setState({loading: false});
     this.setState({filteredResults: data})
+    this.setState({loading: false});
   }
 
   async updateSearch(e) {
@@ -41,9 +53,17 @@ export default class Cities extends Component {
     await this.setState({newCountry: e.target.value});
   }
 
-  // sendNewCity(name, country, imageUrl) {
+  async updateNewUrl(e) {
+    await this.setState({newUrl: e.target.value});
+  }
 
-  // }
+  clearFields() {
+    console.log('here')
+    this.setState({newCity: ""});
+    this.setState({newCountry: ""});
+    this.setState({newUrl: ""});
+  }
+
 
   render() {
     return (
@@ -53,10 +73,16 @@ export default class Cities extends Component {
 
         <label htmlFor="searchBar"> Add City: </label>
         <input id="searchBar" type="text" value ={this.state.newCity} onChange={this.updateNewCity.bind(this)}></input>
-        <label htmlFor="searchBar"> Add Country: </label>
+        <label htmlFor="searchBar"> Country: </label>
         <input id="searchBar" type="text" value ={this.state.newCountry} onChange={this.updateNewCountry.bind(this)}></input>
+        <label htmlFor="searchBar"> Image URL: </label>
+        <input id="searchBar" type="text" value ={this.state.newUrl} onChange={this.updateNewUrl.bind(this)}></input>
 
-        <PostResource url="http://localhost:5000/api/cities" dataObject={{"name": this.state.newCity, "country": this.state.newCountry}}>  
+        <PostResource 
+          url="http://localhost:5000/api/cities" 
+          dataObject={{"name": this.state.newCity, "country": this.state.newCountry, "imageUrl": this.state.newUrl}} 
+          action={this.clearFields}
+          >  
         </PostResource>
 
         <label htmlFor="searchBar"> Search List: </label>
