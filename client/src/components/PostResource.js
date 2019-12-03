@@ -1,37 +1,33 @@
 import React, { Component } from 'react';
 import { Container, Button } from 'reactstrap';
+import { connect } from 'react-redux'
+//import actions needed below
+import { clearNewCityFields, getCities, } from '../store/actions/cityActions';
 
-export default class PostResrouce extends Component {
+
+
+class PostResource extends Component {    
 
     async makePost(url, dataObject) {
+        console.log('inside post')
+        this.props.dispatch(clearNewCityFields())
         console.log('working')
-        if(Object.keys(dataObject).includes('name')) {
-            const response = await fetch(url);
-            const data = await response.json();
-            console.log(data)
-            let newArray = []
-            for(let i=0; i<data.length; i++) {
-                newArray.push(data[i].name)
-            }
-            console.log(newArray)
-            if(!newArray.includes(dataObject.name)) {
-                console.log('posting')
-                fetch(url, {
-                    method: 'POST',
-                    headers: {
-                    'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(dataObject)
-                }).then(res => res.json())
-                .then(data => console.log(data), alert('City created!'))
-                .catch(err => console.log(err));
-            } else {
-                alert('Sorry, this resource was already created')
-            }
-        }
+        await fetch(url, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataObject)
+        }).then(res => res.json())
+        .then(data => console.log(data), alert('City created!'))
+        .catch(err => console.log(err))
+
+    this.props.dispatch(getCities())
    }
 
    testFunction(url, dataObject) {
+       console.log('test')
+        this.props.dispatch(clearNewCityFields())
         console.log("URL: " + url);
         console.log("data object");
         console.log(dataObject);
@@ -43,13 +39,23 @@ export default class PostResrouce extends Component {
             color="dark" 
             style={{marginBottom: '2rem'}}
             onClick={()=> {
-                console.log('something')
+                console.log('click')
                 const url = this.props.url;
-                const dataObject = this.props.dataObject;
+                const dataObject = {"name": this.props.newCity, "country": this.props.newCountry, "imageUrl": this.props.newUrl}
                 this.makePost(url, dataObject);
                 // this.testFunction(url,dataObject)
-            }, this.props.action}
+            }}
             >Submit</Button>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        newCity: state.cities.newCity,
+        newCountry: state.cities.newCountry,
+        newUrl: state.cities.newUrl,
+    }
+  }
+
+export default connect(mapStateToProps)(PostResource)
