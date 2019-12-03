@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
+import { Container, ListGroup, ListGroupItem } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux'
 
@@ -10,9 +10,6 @@ import PostResource from './PostResource';
 import { filterCities, setNewCity, setNewCountry, setNewUrl } from '../store/actions/cityActions';
 
 class Cities extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   state = {
     search: "",

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { connect } from 'react-redux'
 //import actions needed below
 import { clearNewCityFields, getCities, } from '../store/actions/cityActions';
