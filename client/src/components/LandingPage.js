@@ -5,7 +5,6 @@ import '../assets/LandingPage.css';
 
 //Components
 import StartBrowsing from './StartBrowsing'
-import Footer from './Footer'
 import NavBar from './NavBar'
 
 
@@ -16,7 +15,7 @@ function LandingPage() {
           <img src={MYtineraryLogo} className="Mytinerary-logo" alt="logo" />
           <p className="TagLine">Find your perfect trip, designed by insiders who know and love their cities.</p>
           <StartBrowsing />
-          <Footer />
+          <p className="PopularHeader">Popular MYtineraries:</p>
       </div>
     );
   }

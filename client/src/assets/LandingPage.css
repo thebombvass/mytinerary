@@ -1,22 +1,23 @@
 .Mytinerary-logo {
-    margin-top: 70px;
-    margin-bottom: 50px;
+    margin-top: 10px;
+    margin-bottom: 30px;
     width: 300px;
     height: 120px;
 }
 
 .TagLine {
-    font-size: 20px;
+    font-size: 18px;
     margin: 15px;
 }
 
 .StartBrowsingButton {
-    height: 150px;
-    width: 150px;
+    height: 100px;
+    width: 100px;
 }
 
 .StartBrowsing {
-    margin: 70px;
+    font-size: 15px;
+    margin: 30px;
 }
 
 .homeIcon {
@@ -33,9 +34,6 @@
     width: 140px;
 }
 
-.Footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+.StartBrowsing h2 {
+    font-size: 25px;
 }

@@ -23,20 +23,17 @@ class NavBar extends Component {
             <Container>
             <Row>
                 <Col xs="3">
-                    <NavBar>
-                        <NavItem>
-                            <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown.bind(this)}>
-                            <DropdownToggle nav caret>
-                                Account
-                            </DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem>Log In</DropdownItem>
-                                <DropdownItem>Something Else</DropdownItem>
-                            </DropdownMenu>
-                            </Dropdown>
-                        </NavItem>
-                    </NavBar>
-                    
+                    <Nav>
+                        <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown.bind(this)}>
+                        <DropdownToggle nav caret>
+                            Account
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            <DropdownItem>Log In</DropdownItem>
+                            <DropdownItem>Create an Account</DropdownItem>
+                        </DropdownMenu>
+                        </Dropdown>
+                    </Nav>
                 </Col>
 
                 <Col>
