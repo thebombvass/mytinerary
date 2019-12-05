@@ -16,9 +16,10 @@ class NavBar extends Component {
     toggleDropDown() {
         this.setState({dropdownOpen: !this.state.dropdownOpen})
     }
-
   
     render() {
+        const citiesUrl = window.location.protocol + "//"+window.location.hostname+":"+window.location.port+'/cities'
+        const homeUrl = window.location.protocol + "//"+window.location.hostname+":"+window.location.port+'/'
         return (
             <Container>
             <Row>
@@ -45,10 +46,10 @@ class NavBar extends Component {
                     <Collapse isOpen={this.state.collapsed} navbar>
                         <Nav>
                         <NavItem>
-                            <NavLink>Cities</NavLink>
+                            <NavLink><a href={citiesUrl}>Cities</a></NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink>Home</NavLink>
+                            <NavLink><a href={homeUrl}>Home</a></NavLink>
                         </NavItem>
                         </Nav>
                     </Collapse>

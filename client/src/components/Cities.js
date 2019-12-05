@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux'
+import NavBar from './NavBar'
+
 
 //components
 import PostResource from './PostResource';
@@ -50,6 +52,9 @@ class Cities extends Component {
 
   render() {
     return (
+      <div>
+      <NavBar></NavBar>
+      
       <Container>
 
         <h1>Cities</h1>
@@ -85,6 +90,7 @@ class Cities extends Component {
           }
         </ListGroup>
       </Container>
+      </div>
     );
   }
 

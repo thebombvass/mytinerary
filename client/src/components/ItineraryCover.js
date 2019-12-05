@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem } from 'reactstrap';
+// import { Container, ListGroup, ListGroupItem } from 'reactstrap';
 import { connect } from 'react-redux'
+import '../assets/ItineraryCover.css'
 
 
 class ItineraryCover extends Component {
 
     render() {
+        let divStyle = {
+            backgroundImage: 'url('+this.props.imageUrl+')',
+        }
         return(
-            <div className>
-
+            <div className={this.props.styleInfo} style={divStyle}>
+                <p>{this.props.cityName}</p>
             </div>
         )
     }
