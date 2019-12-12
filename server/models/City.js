@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
 const CitySchema = new Schema ({
     name: {
         type: String,
@@ -13,7 +12,7 @@ const CitySchema = new Schema ({
     },
     imageUrl: {
         type: String,
-    }
+    },
 })
 
 //name of module is the singular version (city) of the database name (cities)

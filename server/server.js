@@ -6,6 +6,7 @@ const cors = require('cors');
 //import routes
 const items = require('./routes/api/items');
 const cities = require('./routes/api/cities');
+const itineraries = require('./routes/api/itineraries')
 
 const app = express();
 
@@ -27,6 +28,7 @@ mongoose.Promise = global.Promise;
 // Use routes
 app.use('/api/items', items);
 app.use('/api/cities', cities);
+app.use('/api/itineraries', itineraries);
 
 const port = process.env.PORT || 5000;
 
