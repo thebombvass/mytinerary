@@ -33,6 +33,23 @@ class PostResource extends Component {
         console.log(dataObject);
    }
 
+    setItinUrl() {
+        var cityUrlName = "" 
+
+        for (var i=0; i < this.props.newCity.length; i++) {
+            if (this.props.newCity.charAt(i) == " ") {
+                cityUrlName += "%20";
+            } else {
+                cityUrlName += this.props.newCity.charAt(i);
+            }
+        }
+        console.log(cityUrlName)
+        var itinUrl = window.location.protocol + "//"+window.location.hostname+":"+window.location.port+ "/itineraries/"+cityUrlName
+        console.log(itinUrl)
+
+        return itinUrl;
+   }
+
     render(){
         return (
             <Button 
@@ -41,7 +58,8 @@ class PostResource extends Component {
             onClick={()=> {
                 console.log('click')
                 const url = this.props.url;
-                const dataObject = {"name": this.props.newCity, "country": this.props.newCountry, "imageUrl": this.props.newUrl}
+                const itinUrl = this.setItinUrl();
+                const dataObject = {"name": this.props.newCity, "country": this.props.newCountry, "imageUrl": this.props.newUrl, "itinerariesUrl": itinUrl}
                 this.makePost(url, dataObject);
                 // this.testFunction(url,dataObject)
             }}

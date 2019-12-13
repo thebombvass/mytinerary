@@ -7,6 +7,7 @@ import NavBar from './NavBar'
 
 //components
 import PostResource from './PostResource';
+import ItineraryCover from './ItineraryCover';
 
 //action imports
 import { filterCities, setNewCity, setNewCountry, setNewUrl } from '../store/actions/cityActions';
@@ -79,10 +80,16 @@ class Cities extends Component {
         <ListGroup>
           {this.props.loading ? <p>loading...</p> : 
           <TransitionGroup className="cities-list">
-            {this.props.filteredResults.map(({ id, name, country, }) => (
+            {this.props.filteredResults.map(({ id, name, country, imageUrl, itinerariesUrl}) => (
               <CSSTransition key={id} timeout={500} classNames="fade">
                 <ListGroupItem>
-                  <p>{name}</p><p>{country}</p>
+                <a href={itinerariesUrl}>
+                <ItineraryCover
+                imageUrl = {imageUrl}
+                styleInfo={"CitiesList"}
+                cityName={name + ", " + country}
+                ></ItineraryCover>
+                </a>
                 </ListGroupItem>
               </CSSTransition>
             ))}
