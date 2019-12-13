@@ -13,6 +13,9 @@ const CitySchema = new Schema ({
     imageUrl: {
         type: String,
     },
+    itinerariesUrl: {
+        type: String,
+    }
 })
 
 //name of module is the singular version (city) of the database name (cities)
