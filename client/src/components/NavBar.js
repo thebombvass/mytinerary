@@ -48,10 +48,10 @@ class NavBar extends Component {
                     <Collapse isOpen={this.state.collapsed} navbar>
                         <Nav>
                         <NavItem>
-                            <NavLink><a href={citiesUrl}>Cities</a></NavLink>
+                            <NavLink href={citiesUrl}>Cities</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink><a href={homeUrl}>Home</a></NavLink>
+                            <NavLink href={homeUrl}>Home</NavLink>
                         </NavItem>
                         </Nav>
                     </Collapse>

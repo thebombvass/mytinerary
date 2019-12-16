@@ -7,6 +7,9 @@ const initState = {
     newCity: "",
     newCountry: "",
     newUrl: "",
+    newEmail: "",
+    newPassword: "",
+    newProfPicUrl: "",
 }
 
 function citiesReducer(state = initState, action) {
@@ -52,6 +55,28 @@ function citiesReducer(state = initState, action) {
                 newCity: "",
                 newCountry: "",
                 newUrl: "", 
+            }
+        case 'SET_NEW_EMAIL' :
+            return {
+                ...state, 
+                newEmail: action.newEmail
+            }
+        case 'SET_NEW_PASSWORD' :
+            return {
+                ...state, 
+                newPassword: action.newPassword
+            }
+        case 'SET_NEW_PROFPICURL' :
+            return {
+                ...state, 
+                newProfPicUrl: action.newProfPicUrl
+            }
+        case 'CLEAR_NEW_USER_FIELDS' : 
+            return {
+                ...state,
+                newEmail: "",
+                newPassword: "",
+                newProfPicUrl: "", 
             }
         default: 
             return state;

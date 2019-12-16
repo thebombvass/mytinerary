@@ -73,3 +73,30 @@ export function clearNewCityFields() {
         type: 'CLEAR_NEW_CITY_FIELDS'
     }
 }
+
+export function setNewEmail(newEmail) {
+    return {
+        type: 'SET_NEW_EMAIL', 
+        newEmail: newEmail,
+    }
+}
+
+export function setNewPassword(newPassword) {
+    return {
+        type: 'SET_NEW_PASSWORD', 
+        newPassword: newPassword,
+    } 
+}
+
+export function setNewProfPicUrl(newProfPicUrl) {
+    return {
+        type: 'SET_NEW_PROFPICURL', 
+        newProfPicUrl: newProfPicUrl,
+    }
+}
+
+export function clearNewUserFields() {
+    return {
+        type: 'CLEAR_NEW_USER_FIELDS'
+    }
+}

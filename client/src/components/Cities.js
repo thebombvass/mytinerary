@@ -33,6 +33,7 @@ class Cities extends Component {
 
   async updateNewCity(e) {
     let newArrary = []
+    //TO DO; move this logic to Post Resource where specified in comments there to avoid wierd duplicate bug
     for(let i =0; i<this.props.cities.length; i++) {
       newArrary.push(this.props.cities[i].name)
     }
@@ -69,7 +70,8 @@ class Cities extends Component {
         <br></br>
         
         <PostResource 
-          url="http://localhost:5000/api/cities" 
+          url="http://localhost:5000/api/cities"
+          parentComp = "cities"
           >  
         </PostResource>
         
