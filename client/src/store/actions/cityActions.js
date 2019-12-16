@@ -100,3 +100,23 @@ export function clearNewUserFields() {
         type: 'CLEAR_NEW_USER_FIELDS'
     }
 }
+
+export function setEmail(email) {
+    return {
+        type: 'SET_EMAIL', 
+        email: email,
+    }
+}
+
+export function setPassword(password) {
+    return {
+        type: 'SET_PASSWORD', 
+        password: password,
+    } 
+}
+
+export function clearUserFields() {
+    return {
+        type: 'CLEAR_USER_FIELDS'
+    }
+}

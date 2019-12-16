@@ -21,6 +21,8 @@ class NavBar extends Component {
         const citiesUrl = window.location.protocol + "//"+window.location.hostname+":"+window.location.port+'/cities'
         const homeUrl = window.location.protocol + "//"+window.location.hostname+":"+window.location.port+'/'
         const createAccountUrl = window.location.protocol + "//"+window.location.hostname+":"+window.location.port+'/createaccount'
+        const LogInUrl = window.location.protocol + "//"+window.location.hostname+":"+window.location.port+'/login'
+
 
         return (
             <Container>
@@ -32,7 +34,7 @@ class NavBar extends Component {
                             Account
                         </DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem>Log In</DropdownItem>
+                            <DropdownItem><a href={LogInUrl}>Log In</a></DropdownItem>
                             <DropdownItem><a href={createAccountUrl}>Create an Account</a></DropdownItem>
                         </DropdownMenu>
                         </Dropdown>

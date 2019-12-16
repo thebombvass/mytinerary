@@ -8,6 +8,7 @@ const items = require('./routes/api/items');
 const cities = require('./routes/api/cities');
 const itineraries = require('./routes/api/itineraries')
 const users = require('./routes/api/users')
+const auth = require('./routes/api/auth')
 
 const app = express();
 
@@ -30,7 +31,9 @@ mongoose.Promise = global.Promise;
 app.use('/api/items', items);
 app.use('/api/cities', cities);
 app.use('/api/itineraries', itineraries);
+app.use('/api/users/login', users);
 app.use('/api/users', users);
+
 
 const port = process.env.PORT || 5000;
 

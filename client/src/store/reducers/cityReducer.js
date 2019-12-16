@@ -10,6 +10,8 @@ const initState = {
     newEmail: "",
     newPassword: "",
     newProfPicUrl: "",
+    email: "",
+    password: "",
 }
 
 function citiesReducer(state = initState, action) {
@@ -77,6 +79,16 @@ function citiesReducer(state = initState, action) {
                 newEmail: "",
                 newPassword: "",
                 newProfPicUrl: "", 
+            }
+        case 'SET_EMAIL' :
+            return {
+                ...state, 
+                email: action.email
+            }
+        case 'SET_PASSWORD' :
+            return {
+                ...state, 
+                password: action.password
             }
         default: 
             return state;

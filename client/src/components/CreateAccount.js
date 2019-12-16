@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Input, FormText, Button, Container } from 'reactstrap';
+import { Form, FormGroup, Label, Input, FormText, Container } from 'reactstrap';
 import { connect } from 'react-redux'
 
 //components
@@ -16,8 +16,11 @@ class CreateAccount extends Component {
       }
     
       async updateNewPassword(e) {
-        //maybe something like 'if e.target.value.lenght > 8' then that else nothing?
-        this.props.dispatch(setNewPassword(e.target.value))
+        if(e.target.value.length >= 8) {
+            this.props.dispatch(setNewPassword(e.target.value))
+        } else {
+            this.props.dispatch(setNewPassword(null))
+        }
       }
 
       async updateNewProfPicUrl(e) {
@@ -37,7 +40,7 @@ class CreateAccount extends Component {
                     <FormGroup>
                         <Label for="email">Email</Label>
                         <Input type="email" name="email" id="email" placeholder="i.e. example@example.com" value ={this.props.newEmail} onChange={this.updateNewEmail.bind(this)} />
-                    </FormGroup>
+                    </FormGroup> 
                     <FormGroup>
                         <Label for="password">Password</Label>
                         <Input type="password" name="password" id="password" placeholder="" value ={this.props.newPassword} onChange={this.updateNewPassword.bind(this)} />
@@ -58,7 +61,7 @@ class CreateAccount extends Component {
                         </FormText>
                     </FormGroup> */}
                     <PostResource
-                        url="http://localhost:5000/api/users"
+                        url="http://localhost:5000/api/users/create"
                         parentComp = "createAccount"
                         >
                     </PostResource>

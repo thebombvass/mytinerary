@@ -33,7 +33,7 @@ class Cities extends Component {
 
   async updateNewCity(e) {
     let newArrary = []
-    //TO DO; move this logic to Post Resource where specified in comments there to avoid wierd duplicate bug
+    //TO DO: fix this somehow - Tolo and Toledo clash. Should only be at the end of the word. Diff ONblahblah?
     for(let i =0; i<this.props.cities.length; i++) {
       newArrary.push(this.props.cities[i].name)
     }
