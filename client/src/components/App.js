@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import LandingPage from './LandingPage.js';
 import Cities from './Cities.js';
 import OneCityMultiItin from './OneCityMultiItin.js';
+import CreateAccount from './CreateAccount'
 
 //css imports
 import '../assets/App.css'
@@ -26,6 +27,9 @@ export default class App extends Component {
           </Switch>
           <Switch>
              <Route path='/itineraries' component={OneCityMultiItin} />
+          </Switch>
+          <Switch>
+             <Route path='/createaccount' component={CreateAccount} />
           </Switch>
         </div>
       </BrowserRouter>
