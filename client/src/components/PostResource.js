@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux'
 //import actions needed below
-import { clearNewCityFields, getCities, } from '../store/actions/cityActions';
+import { clearNewCityFields, getCities,clearNewUserFields } from '../store/actions/cityActions';
 
 
 
@@ -11,7 +11,7 @@ class PostResource extends Component {
     async makePost(url, dataObject) {
         console.log('inside post')
         this.props.dispatch(clearNewCityFields())
-        //add dispatch to clear other fields 
+        this.props.dispatch(clearNewUserFields())
         console.log('working')
         await fetch(url, {
             method: 'POST',
@@ -31,7 +31,8 @@ class PostResource extends Component {
 
    testFunction(url, dataObject) {
        console.log('test')
-        this.props.dispatch(clearNewCityFields())
+       this.props.dispatch(clearNewCityFields())
+       this.props.dispatch(clearNewUserFields())
         console.log("URL: " + url);
         console.log("data object");
         console.log(dataObject);
@@ -54,20 +55,25 @@ class PostResource extends Component {
         return itinUrl;
    }
 
+   //The click will chose which kind of data we are sending using the parent component indication from props
+   //    and then come here. This is also where testFunction can be uncommented and used as opposed to makePost
+   //   in case you need to test this component and info it is sending without actually sending anything to the db
+   //NOTE: IF YOU TEST, REMEMBER TO UNCOMMENT MAKEPOST WHEN DONE FOR ALL FUNCTIONS BELOW
+
    //if using this for Cities Post
    citiesDataObjectCreator(url) {
     //i think move city validation logic here?
     const itinUrl = this.setItinUrl();
     const dataObject = {"name": this.props.newCity, "country": this.props.newCountry, "imageUrl": this.props.newUrl, "itinerariesUrl": itinUrl}
-    // this.makePost(url, dataObject);
-    this.testFunction(url, dataObject)
+    this.makePost(url, dataObject);
+    // this.testFunction(url, dataObject)
    }
 
    //
    createAccountDataObjectCreator(url) {
     const dataObject = {"email": this.props.newEmail, "password": this.props.newPassword, "profPicUrl": this.props.newProfPicUrl}
-    // this.makePost(url, dataObject);
-    this.testFunction(url, dataObject)
+    this.makePost(url, dataObject);
+    // this.testFunction(url, dataObject)
    }
 
 
@@ -80,9 +86,9 @@ class PostResource extends Component {
                 console.log('click')
                 const url = this.props.url;
                 if(this.props.parentComp == "cities") {
-                    // this.citiesDataObjectCreator(url)
+                    this.citiesDataObjectCreator(url)
                 } else if (this.props.parentComp == "createAccount") {
-                    // this.createAccountDataObjectCreator(url)
+                    this.createAccountDataObjectCreator(url)
                 }
             }}
             >Submit</Button>
