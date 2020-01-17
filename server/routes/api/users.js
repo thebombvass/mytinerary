@@ -9,7 +9,7 @@ const saltRounds = 12;
 //token
 const jwt = require("jsonwebtoken");
 const key = require('../../config/keys');
-
+const passport = require('passport');
 
 
 // @route   GET api/users
@@ -21,6 +21,9 @@ const key = require('../../config/keys');
 //         .catch(err => console.log(err))
 // });
 
+// @route   GET api/users
+// @desc    get the user that is signed in
+// @access  public
 router.get(
     "/",
     passport.authenticate("jwt", { session: false }),
@@ -34,6 +37,41 @@ router.get(
     }
   );
 
+// @route   GET api/users/google
+// @desc    get the user signed in using google
+// @access  public
+router.get("/google",
+    passport.authenticate("google", { scope: ['profile'] }),
+)
+
+// @route   GET api/users/google/redirect
+// @desc    get the user signed in using google
+// @access  public
+router.get("/google/redirect", passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+        console.log('you reached callback URI')
+        //successful login
+        const payload = {
+        };
+        //units in seconds, this is 3 hours
+        const options = {expiresIn: 10800};
+        jwt.sign(
+        payload,
+        key.secretOrKey,
+        options,
+        (err, token) => {
+            if (err){
+            res.json({
+                success: false,
+                token: "There was an error"
+            });
+            } else {
+                res.redirect('http://localhost:3000/#' + token)
+            }
+        }
+        );
+        
+    }
+)
 
 // @route   POST api/users/login
 // @desc    not creating a resource, just checking that email and password match
@@ -56,7 +94,8 @@ router.post('/login', (req, res) => {
                         username: user.email,
                         avatarPicture: user.profPicUrl
                     };
-                    const options = {expiresIn: 2592000};
+                    //units in seconds, this is 3 hours
+                    const options = {expiresIn: 10800};
                     jwt.sign(
                     payload,
                     key.secretOrKey,
@@ -68,10 +107,11 @@ router.post('/login', (req, res) => {
                             token: "There was an error"
                         });
                         }else {
-                        res.json({
-                            success: true,
-                            token: token
-                        });
+                            console.log('here')
+                            res.json({
+                                success: true,
+                                token: token
+                            });
                         }
                     }
                     );

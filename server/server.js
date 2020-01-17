@@ -32,16 +32,16 @@ mongoose
   
 mongoose.Promise = global.Promise;
 
+//passport middleware
+app.use(passport.jwtStrat.initialize());
+app.use(passport.googleStrat.initialize());
+
 // Use routes
 app.use('/api/items', items);
 app.use('/api/cities', cities);
 app.use('/api/itineraries', itineraries);
-app.use('/api/users/login', users);
+// app.use('/api/users/login', users); pretty sure you don't need this. lets see
 app.use('/api/users', users);
-
-//passport middleware
-app.use(passport.initialize());
-
 
 const port = process.env.PORT || 5000;
 
