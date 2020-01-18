@@ -12,6 +12,7 @@ class PostResource extends Component {
         console.log('inside post')
         this.props.dispatch(clearNewCityFields())
         this.props.dispatch(clearNewUserFields())
+        //clear create account fields??
         console.log('working')
         await fetch(url, {
             method: 'POST',
@@ -30,26 +31,29 @@ class PostResource extends Component {
                 alert(data.message)
             }
             console.log(data)
+            if(data.token) {
+                window.location.replace('http://localhost:3000/#' + data.token)
+            }
         })
         .catch(err => console.log(err))
 
     this.props.dispatch(getCities())
-   }
+    }
 
-   testFunction(url, dataObject) {
-       console.log('test')
-       this.props.dispatch(clearNewCityFields())
-       this.props.dispatch(clearNewUserFields())
+    testFunction(url, dataObject) {
+        console.log('test')
+        this.props.dispatch(clearNewCityFields())
+        this.props.dispatch(clearNewUserFields())
         console.log("URL: " + url);
         console.log("data object");
         console.log(dataObject);
-   }
+    }
 
     setItinUrl() {
         var cityUrlName = "" 
 
         for (var i=0; i < this.props.newCity.length; i++) {
-            if (this.props.newCity.charAt(i) == " ") {
+            if (this.props.newCity.charAt(i) === " ") {
                 cityUrlName += "%20";
             } else {
                 cityUrlName += this.props.newCity.charAt(i);
@@ -60,33 +64,38 @@ class PostResource extends Component {
         console.log(itinUrl)
 
         return itinUrl;
-   }
+    }
 
-   //The click event logic will chose which kind of data we are sending using the parent component indication from props
-   //    and then come here. This is also where testFunction can be uncommented and used as opposed to makePost
-   //   in case you need to test this component and info it is sending without actually sending anything to the db
-   //NOTE: IF YOU TEST, REMEMBER TO UNCOMMENT MAKEPOST WHEN DONE FOR ALL FUNCTIONS BELOW
+    //The click event logic will chose which kind of data we are sending using the parent component indication from props
+    //    and then come here. This is also where testFunction can be uncommented and used as opposed to makePost
+    //   in case you need to test this component and info it is sending without actually sending anything to the db
+    //NOTE: IF YOU TEST, REMEMBER TO UNCOMMENT MAKEPOST WHEN DONE FOR ALL FUNCTIONS BELOW
 
-   //if using this for Cities Post
-   citiesDataObjectCreator(url) {
-    const itinUrl = this.setItinUrl();
-    const dataObject = {"name": this.props.newCity, "country": this.props.newCountry, "imageUrl": this.props.newUrl, "itinerariesUrl": itinUrl}
-    this.makePost(url, dataObject);
-    // this.testFunction(url, dataObject)
-   }
+    //if using this for Cities Post
+    citiesDataObjectCreator(url) {
+        const itinUrl = this.setItinUrl();
+        const dataObject = {"name": this.props.newCity, "country": this.props.newCountry, "imageUrl": this.props.newUrl, "itinerariesUrl": itinUrl}
+        this.makePost(url, dataObject);
+        // this.testFunction(url, dataObject)
+    }
 
-   //if using this for Create Account Post 
-   createAccountDataObjectCreator(url) {
-    const dataObject = {"email": this.props.newEmail, "password": this.props.newPassword, "profPicUrl": this.props.newProfPicUrl}
-    this.makePost(url, dataObject);
-    // this.testFunction(url, dataObject)
-   }
+    //if using this for Create Account Post 
+    createAccountDataObjectCreator(url) {
+        //validate that email exists and that password is appropriate length
+        if (this.props.newPassword.length>8 && this.props.newEmail.lenght>0) {
+            const dataObject = {"email": this.props.newEmail, "password": this.props.newPassword, "profPicUrl": this.props.newProfPicUrl}
+            this.makePost(url, dataObject);
+        } else {
+            alert('Your account was not created. Please ensure you have both password and email fields filled out and that your password is longer than 8 characters.')
+        }
+        // this.testFunction(url, dataObject)
+    }
 
-   logInDataObjectCreator(url) {
-    const dataObject = {"email": this.props.email, "password": this.props.password}
-    this.makePost(url, dataObject);
-    // this.testFunction(url, dataObject)
-   }
+    logInDataObjectCreator(url) {
+        const dataObject = {"email": this.props.email, "password": this.props.password}
+        this.makePost(url, dataObject);
+        // this.testFunction(url, dataObject)
+    }
 
 
     render(){
@@ -97,11 +106,11 @@ class PostResource extends Component {
             onClick={()=> {
                 console.log('click')
                 const url = this.props.url;
-                if(this.props.parentComp == "cities") {
+                if(this.props.parentComp === "cities") {
                     this.citiesDataObjectCreator(url)
-                } else if (this.props.parentComp == "createAccount") {
+                } else if (this.props.parentComp === "createAccount") {
                     this.createAccountDataObjectCreator(url)
-                } else if (this.props.parentComp == "logIn") {
+                } else if (this.props.parentComp === "logIn") {
                     this.logInDataObjectCreator(url)
                 }
             }}

@@ -12,6 +12,8 @@ const initState = {
     newProfPicUrl: "",
     email: "",
     password: "",
+    currentUsername: "",
+    currentProfPicUrl: "https://www.pinclipart.com/picdir/middle/371-3712002_png-file-svg-person-icon-black-png-clipart.png",
 }
 
 function citiesReducer(state = initState, action) {
@@ -89,6 +91,18 @@ function citiesReducer(state = initState, action) {
             return {
                 ...state, 
                 password: action.password
+            }
+        case 'SAVE_LOGGED_IN_USER' :
+            return {
+                ...state, 
+                currentUsername: action.currentUsername,
+                currentProfPicUrl: action.currentProfPicUrl,
+            }
+        case 'LOG_OUT' :
+            return {
+                ...state, 
+                currentUsername: "",
+                currentProfPicUrl: "https://www.pinclipart.com/picdir/middle/371-3712002_png-file-svg-person-icon-black-png-clipart.png",
             }
         default: 
             return state;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Input, FormText, Container } from 'reactstrap';
+import { Form, FormGroup, Label, Input, FormText, Container, Button } from 'reactstrap';
 import { connect } from 'react-redux'
 
 //components
@@ -11,14 +11,17 @@ import { setEmail, setPassword, } from '../store/actions/cityActions';
 
 class LogIn extends Component {
 
-    //all these below gotta change
     async updateEmail(e) {
         this.props.dispatch(setEmail(e.target.value))
-      }
+    }
     
-      async updatePassword(e) {
+    async updatePassword(e) {
         this.props.dispatch(setPassword(e.target.value))
-      }
+    }
+
+    getGoogleConsent() {
+        window.location.href = "http://localhost:5000/api/users/google"
+    }
 
     render() {
         return(
@@ -55,6 +58,13 @@ class LogIn extends Component {
                         >
                     </PostResource>
                 </Form>
+                <Button
+                onClick={()=> {
+                    this.getGoogleConsent()
+                }}
+                >
+                    Sign in with Google
+                </Button>
                 </Container>
             </div>
         )

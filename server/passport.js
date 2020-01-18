@@ -45,24 +45,27 @@ module.exports = {
     })
   ),
 
-  //in passport documentation done arg is replaced with cb
+  //google sign in Strategy
   googleStrat: passport.use(
-    new GoogleStrategy(googleOpts, (accessToken, refreshToken, profile, done) => {
-      User.findOne({googleId: profile.id})
+    new GoogleStrategy(googleOpts, (accessToken, refreshToken, profile, email, done) => {
+      User.findOne({googleId: email.id})
       .then((user) => {
         if (user) {
+           console.log('found user')
           //if use is already there, return user
-          done(null, user)
+          return done(null, user)
           //if user has not bee there before, save new user
         } else {
+          console.log('did not find user')
           const newUser = new User({
-            googleId: profile.id,
-            profPicUrl: profile._json.picture,
-            displayName: profile.displayName,
+            googleId: email.id,
+            profPicUrl: email._json.picture,
+            displayName: email.displayName,
+            email: email._json.email
         });
         newUser.save().then(user => {
                 console.log(user)
-            }).then(newUser => done(null, newUser))
+            }).then(user => {return done(null, user)})
             .catch(err => console.log(err));
         }
       })

@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink, Dropdown, DropdownItem, DropdownToggle, DropdownMenu  } from 'reactstrap';
+import '../assets/App.css'
+import { connect } from 'react-redux'
+import {Link} from 'react-router-dom';
+
+
+//action imports
+import { logOut } from '../store/actions/cityActions';
 
 
 class NavBar extends Component {
@@ -16,29 +23,46 @@ class NavBar extends Component {
     toggleDropDown() {
         this.setState({dropdownOpen: !this.state.dropdownOpen})
     }
+
+    logOut() {
+        console.log('youre here logging out')
+        localStorage.removeItem('token')
+        this.props.dispatch(logOut())
+    }
   
     render() {
-        const citiesUrl = window.location.protocol + "//"+window.location.hostname+":"+window.location.port+'/cities'
-        const homeUrl = window.location.protocol + "//"+window.location.hostname+":"+window.location.port+'/'
-        const createAccountUrl = window.location.protocol + "//"+window.location.hostname+":"+window.location.port+'/createaccount'
-        const LogInUrl = window.location.protocol + "//"+window.location.hostname+":"+window.location.port+'/login'
-
 
         return (
             <Container>
             <Row>
-                <Col xs="3">
+                <Col xs="4">
+                    { this.props.currentUsername.length>0 ? (
                     <Nav>
                         <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown.bind(this)}>
                         <DropdownToggle nav caret>
-                            Account
+                            <img className='navProfilePicture' src={this.props.currentProfPicUrl} alt="Profile" ></img> Account
                         </DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem><a href={LogInUrl}>Log In</a></DropdownItem>
-                            <DropdownItem><a href={createAccountUrl}>Create an Account</a></DropdownItem>
+                            <DropdownItem>Welcome {this.props.currentUsername}!</DropdownItem>
+                            <DropdownItem><Link to="/createaccount">My Profile (currently routing to create)</Link></DropdownItem>
+                            <DropdownItem onClick={this.logOut.bind(this)}>Log Out</DropdownItem>
                         </DropdownMenu>
                         </Dropdown>
                     </Nav>
+                    ) : (
+                    <Nav>
+                        <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown.bind(this)}>
+                        <DropdownToggle nav caret>
+                            <img className='navProfilePicture' src={this.props.currentProfPicUrl} alt="Profile"></img> Account
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            <DropdownItem>You are currently not logged in.</DropdownItem>
+                            <DropdownItem><Link to="/login">Log In</Link></DropdownItem>
+                            <DropdownItem><Link to="/createaccount">Create an Account</Link></DropdownItem>
+                        </DropdownMenu>
+                        </Dropdown>
+                    </Nav>
+                    )}
                 </Col>
 
                 <Col>
@@ -50,10 +74,10 @@ class NavBar extends Component {
                     <Collapse isOpen={this.state.collapsed} navbar>
                         <Nav>
                         <NavItem>
-                            <NavLink href={citiesUrl}>Cities</NavLink>
+                            <NavLink tag={Link} to="/cities">Cities</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href={homeUrl}>Home</NavLink>
+                            <NavLink tag={Link} to="/">Home</NavLink>
                         </NavItem>
                         </Nav>
                     </Collapse>
@@ -68,4 +92,11 @@ class NavBar extends Component {
 
 }
 
-export default NavBar;
+const mapStateToProps = (state) => {
+    return {
+        currentUsername: state.cities.currentUsername,
+        currentProfPicUrl: state.cities.currentProfPicUrl,
+    }
+  }
+  
+export default connect(mapStateToProps)(NavBar)

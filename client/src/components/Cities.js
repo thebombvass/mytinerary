@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux'
-import NavBar from './NavBar'
-
 
 //components
 import PostResource from './PostResource';
 import ItineraryCover from './ItineraryCover';
+import NavBar from './NavBar'
 
 //action imports
 import { filterCities, setNewCity, setNewCountry, setNewUrl } from '../store/actions/cityActions';
@@ -18,10 +17,9 @@ class Cities extends Component {
     search: "",
   }
   
-  async componentDidMount() {
-    console.log(this.props.loading)
-    // this.timer = setInterval(()=> console.log('ok'), 5000)
-  }
+  // async componentDidMount() {
+  //   console.log("")
+  // } 
 
   async updateSearch(e) {
     await this.setState({search: e.target.value});
@@ -53,6 +51,7 @@ class Cities extends Component {
   }
 
   render() {
+
     return (
       <div>
       <NavBar></NavBar>
@@ -61,12 +60,12 @@ class Cities extends Component {
 
         <h1>Cities</h1>
 
-        <label htmlFor="searchBar"> Add City: </label>
-        <input id="searchBar" type="text" value ={this.props.newCity} onChange={this.updateNewCity.bind(this)}></input>
-        <br></br> <label htmlFor="searchBar"> Country: </label>
-        <input id="searchBar" type="text" value ={this.props.newCountry} onChange={this.updateNewCountry.bind(this)}></input>
-        <br></br><label htmlFor="searchBar"> Image URL: </label>
-        <input id="searchBar" type="text" value ={this.props.newUrl} onChange={this.updateNewUrl.bind(this)}></input>
+        <label htmlFor="addCity"> Add City: </label>
+        <input id="addCity" type="text" value ={this.props.newCity} onChange={this.updateNewCity.bind(this)}></input>
+        <br></br> <label htmlFor="addCountry"> Country: </label>
+        <input id="addCountry" type="text" value ={this.props.newCountry} onChange={this.updateNewCountry.bind(this)}></input>
+        <br></br><label htmlFor="addImage"> Image URL: </label>
+        <input id="addImage" type="text" value ={this.props.newUrl} onChange={this.updateNewUrl.bind(this)}></input>
         <br></br>
         
         <PostResource 

@@ -41,7 +41,7 @@ router.get(
 // @desc    get the user signed in using google
 // @access  public
 router.get("/google",
-    passport.authenticate("google", { scope: ['profile'] }),
+    passport.authenticate("google", { scope: ['profile', 'email'] }),
 )
 
 // @route   GET api/users/google/redirect
@@ -49,8 +49,13 @@ router.get("/google",
 // @access  public
 router.get("/google/redirect", passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
         console.log('you reached callback URI')
+        console.log(req.user)
         //successful login
         const payload = {
+            id: req.user.googleId,
+            username: req.user.email,
+            avatarPicture: req.user.profPicUrl,
+            displayName: req.user.displayName
         };
         //units in seconds, this is 3 hours
         const options = {expiresIn: 10800};
@@ -88,11 +93,11 @@ router.post('/login', (req, res) => {
                 if (result == true) {
                     console.log('true')
                     // res.json({message: "Log In Successful"})
-                    
                     const payload = {
                         id: user.id,
                         username: user.email,
-                        avatarPicture: user.profPicUrl
+                        avatarPicture: user.profPicUrl,
+                        displayName: "" //this will need to be changed in the future when the displayName switch is made. including for now to avoid future bugs
                     };
                     //units in seconds, this is 3 hours
                     const options = {expiresIn: 10800};

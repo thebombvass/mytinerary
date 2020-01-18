@@ -120,3 +120,17 @@ export function clearUserFields() {
         type: 'CLEAR_USER_FIELDS'
     }
 }
+
+export function saveLoggedInUser(currentUsername, currentProfPicUrl) {
+    return {
+        type: 'SAVE_LOGGED_IN_USER',
+        currentUsername: currentUsername,
+        currentProfPicUrl: currentProfPicUrl,
+    }
+}
+
+export function logOut() {
+    return {
+        type: 'LOG_OUT',
+    }
+}

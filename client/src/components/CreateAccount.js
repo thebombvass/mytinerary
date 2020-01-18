@@ -16,11 +16,7 @@ class CreateAccount extends Component {
       }
     
       async updateNewPassword(e) {
-        if(e.target.value.length >= 8) {
-            this.props.dispatch(setNewPassword(e.target.value))
-        } else {
-            this.props.dispatch(setNewPassword(null))
-        }
+        this.props.dispatch(setNewPassword(e.target.value))
       }
 
       async updateNewProfPicUrl(e) {

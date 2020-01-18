@@ -17,9 +17,10 @@ class OneCityMultiItin extends Component {
 
     async componentDidMount() {
         const thisCityUrl = window.location.pathname.slice(13)
+        //To Do: is this used anywhere????
         var cityName = ""
         for (var i=0; i < thisCityUrl.length; i++) {
-            if (thisCityUrl.charAt(i) == "%20") {
+            if (thisCityUrl.charAt(i) === "%20") {
                 cityName += " ";
             } else {
                 cityName += thisCityUrl.charAt(i);
