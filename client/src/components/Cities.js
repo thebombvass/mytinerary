@@ -15,7 +15,7 @@ class Cities extends Component {
 
   state = {
     search: "",
-    isOpen: false,
+    isToggleOn: false,
   }
   
   // async componentDidMount() {
@@ -52,8 +52,12 @@ class Cities extends Component {
   }
 
   toggleAddCityForm() {
+    // this.setState(state => ({
+    //   isToggleOn: !state.isToggleOn
+    // }));
+
     this.setState({
-      isOpen: !(this.state.isOpen)
+      isToggleOn: !this.state.isToggleOn
     })
   }
 
@@ -67,33 +71,34 @@ class Cities extends Component {
         
         <h1>Cities</h1>
 
-      <div>
-        <Button color="primary" onClick={this.toggleAddCityForm}>Add City</Button>
-        <Collapse isOpen={this.state.isOpen}>
-          <Card>
-            <CardBody>
-              <label htmlFor="addCity"> Add City: </label>
-              <input id="addCity" type="text" value ={this.props.newCity} onChange={this.updateNewCity.bind(this)}></input>
-              <br></br> <label htmlFor="addCountry"> Country: </label>
-              <input id="addCountry" type="text" value ={this.props.newCountry} onChange={this.updateNewCountry.bind(this)}></input>
-              <br></br><label htmlFor="addImage"> Image URL: </label>
-              <input id="addImage" type="text" value ={this.props.newUrl} onChange={this.updateNewUrl.bind(this)}></input>
-              <br></br>
-              
-              <PostResource 
-                url="http://localhost:5000/api/cities"
-                parentComp = "cities"
-                >  
-              </PostResource>
-            </CardBody>
-          </Card>
-        </Collapse>
-      </div>
-      
-        <br></br>
-        <label htmlFor="searchBar"> Search List: </label>
-        <input id="searchBar" type="text" value ={this.state.search} onChange={this.updateSearch.bind(this)}></input>
 
+        <div className="citiesForms">
+          <div className="searchCities">
+            <img src="https://img.icons8.com/material-sharp/24/000000/search.png"></img>
+            <input id="searchBar" type="text" value ={this.state.search} onChange={this.updateSearch.bind(this)}></input>
+          </div>
+          <Button id="addClassButton" className="button" onClick={this.toggleAddCityForm.bind(this)}>Add City</Button>
+        </div>
+          <Collapse isOpen={this.state.isToggleOn}>
+            <Card>
+              <CardBody>
+                <label htmlFor="addCity"> Add City: </label>
+                <input id="addCity" type="text" value ={this.props.newCity} onChange={this.updateNewCity.bind(this)}></input>
+                <br></br> <label htmlFor="addCountry"> Country: </label>
+                <input id="addCountry" type="text" value ={this.props.newCountry} onChange={this.updateNewCountry.bind(this)}></input>
+                <br></br><label htmlFor="addImage"> Image URL: </label>
+                <input id="addImage" type="text" value ={this.props.newUrl} onChange={this.updateNewUrl.bind(this)}></input>
+                <br></br>
+                
+                <PostResource 
+                  url="http://localhost:5000/api/cities"
+                  parentComp = "cities"
+                  >  
+                </PostResource>
+              </CardBody>
+            </Card>
+          </Collapse>
+              
         <ListGroup>
           {this.props.loading ? <p>loading...</p> : 
           <TransitionGroup className="cities-list">

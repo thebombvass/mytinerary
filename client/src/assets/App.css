@@ -1,5 +1,16 @@
+/* organize this please */
+
 body {
   font-family: 'Roboto Mono', monospace !important;
+}
+
+/* get rid of chromes stupid focus thing */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+.button:focus {
+    outline: none;
 }
 
 .LandingPage {
@@ -93,4 +104,22 @@ input {
   text-align: center;
   color: #09d3ac;
   box-shadow: 0px 5px #09d3ac;
+}
+
+.citiesForms {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.searchCities {
+  border: 2px solid black;
+}
+
+.searchCities input {
+  border: none;
+}
+
+#addClassButton {
+  background-color: black;
 }

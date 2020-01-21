@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+//id honestly rather have one css sheet, at App level, so can you see if this is necessary/adjust to get rid of it? 
+//  same with ItineraryCover.css
 import '../assets/LandingPage.css';
 import jwt_decode from 'jwt-decode'
 import { connect } from 'react-redux'
