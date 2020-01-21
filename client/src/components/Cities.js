@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem } from 'reactstrap';
+import { Container, ListGroup, ListGroupItem , Collapse, Button, CardBody, Card} from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux'
 
@@ -15,6 +15,7 @@ class Cities extends Component {
 
   state = {
     search: "",
+    isOpen: false,
   }
   
   // async componentDidMount() {
@@ -50,6 +51,12 @@ class Cities extends Component {
     this.props.dispatch(setNewUrl(e.target.value))
   }
 
+  toggleAddCityForm() {
+    this.setState({
+      isOpen: !(this.state.isOpen)
+    })
+  }
+
   render() {
 
     return (
@@ -57,23 +64,32 @@ class Cities extends Component {
       <NavBar></NavBar>
       
       <Container>
-
+        
         <h1>Cities</h1>
 
-        <label htmlFor="addCity"> Add City: </label>
-        <input id="addCity" type="text" value ={this.props.newCity} onChange={this.updateNewCity.bind(this)}></input>
-        <br></br> <label htmlFor="addCountry"> Country: </label>
-        <input id="addCountry" type="text" value ={this.props.newCountry} onChange={this.updateNewCountry.bind(this)}></input>
-        <br></br><label htmlFor="addImage"> Image URL: </label>
-        <input id="addImage" type="text" value ={this.props.newUrl} onChange={this.updateNewUrl.bind(this)}></input>
-        <br></br>
-        
-        <PostResource 
-          url="http://localhost:5000/api/cities"
-          parentComp = "cities"
-          >  
-        </PostResource>
-        
+      <div>
+        <Button color="primary" onClick={this.toggleAddCityForm}>Add City</Button>
+        <Collapse isOpen={this.state.isOpen}>
+          <Card>
+            <CardBody>
+              <label htmlFor="addCity"> Add City: </label>
+              <input id="addCity" type="text" value ={this.props.newCity} onChange={this.updateNewCity.bind(this)}></input>
+              <br></br> <label htmlFor="addCountry"> Country: </label>
+              <input id="addCountry" type="text" value ={this.props.newCountry} onChange={this.updateNewCountry.bind(this)}></input>
+              <br></br><label htmlFor="addImage"> Image URL: </label>
+              <input id="addImage" type="text" value ={this.props.newUrl} onChange={this.updateNewUrl.bind(this)}></input>
+              <br></br>
+              
+              <PostResource 
+                url="http://localhost:5000/api/cities"
+                parentComp = "cities"
+                >  
+              </PostResource>
+            </CardBody>
+          </Card>
+        </Collapse>
+      </div>
+      
         <br></br>
         <label htmlFor="searchBar"> Search List: </label>
         <input id="searchBar" type="text" value ={this.state.search} onChange={this.updateSearch.bind(this)}></input>

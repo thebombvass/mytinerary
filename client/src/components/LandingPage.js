@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import MYtineraryLogo from '../assets/MYtineraryLogo.png'
 import '../assets/LandingPage.css';
 import jwt_decode from 'jwt-decode'
 import { connect } from 'react-redux'
-
+import {Link} from 'react-router-dom';
+import { Container, Row, Col,  } from 'reactstrap';
 
 //Components
-import StartBrowsing from './StartBrowsing'
 import NavBar from './NavBar'
 import PopularItineraries from './PopularItineraries'
 
@@ -19,6 +18,12 @@ import { saveLoggedInUser } from '../store/actions/cityActions';
 //    store it in user collection. (I guess you need fetch calls everywhere tho? hm)
 
 class LandingPage extends Component {
+
+  state = {
+    backgroundStyle: {
+      backgroundImage: 'url()',
+      },
+  }
 
   async componentDidMount() {
     //when you first log in, store the token 
@@ -60,18 +65,47 @@ class LandingPage extends Component {
     } else {
       console.log('No token, youre not logged in')
     }
-  } 
+
+    let backgroundImageArray = ['https://images.unsplash.com/photo-1574673520260-3a5209b775fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80', 'https://images.unsplash.com/photo-1562869035-7c0e05adf020?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80', 'https://images.unsplash.com/photo-1566910399550-7117f25645c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80', 'https://images.unsplash.com/photo-1509129336695-afe9e7d11ae5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80', 'https://images.unsplash.com/photo-1431976047936-b672e11eea4b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1266&q=80', 'https://images.unsplash.com/photo-1498623116890-37e912163d5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80', 'https://images.unsplash.com/photo-1470290282174-30ea78123183?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80', 'https://images.unsplash.com/photo-1497262693247-aa258f96c4f5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=624&q=80', 'https://images.unsplash.com/photo-1506126483163-f4d1558dbf85?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80', 'https://images.unsplash.com/photo-1415226556993-1404e0c6e727?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=696&q=80','https://images.unsplash.com/photo-1483835185168-baba67ced0c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=691&q=80', 'https://images.unsplash.com/photo-1541623986909-8b450cbab078?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80']
+    let randIndex = Math.floor(Math.random()*backgroundImageArray.length)
+    let currentBackgroundImage = backgroundImageArray[randIndex]
+
+    this.setState({
+      backgroundStyle: {
+        backgroundImage: 'url('+currentBackgroundImage+')',
+        },
+    })
+      
+    //end of componentDidMount
+  }
 
   render() {
 
       return (
-        <div className="App">
+        <div className="LandingPage" style={this.state.backgroundStyle}>
             <NavBar></NavBar>
-            <img src={MYtineraryLogo} className="Mytinerary-logo" alt="logo" />
-            <p className="TagLine">Find your perfect trip, designed by insiders who know and love their cities.</p>
-            <StartBrowsing />
-            <p className="PopularHeader">Popular MYtineraries:</p>
-            <PopularItineraries></PopularItineraries>
+            <Container className="centerLandingPage">
+              <p className="TagLine">Find your perfect trip, designed by insiders who know and love their cities.</p>
+            </Container>
+            <Row className="landingPageOptions">
+              <Col xs="5">
+                <div className="landingPageOption">
+                  <img src="https://img.icons8.com/ios/50/000000/city-buildings.png"></img>
+                  <Link to="/cities" className="textFont">Browse<br></br>Cities</Link>
+                </div>
+              </Col>
+              <Col xs="2">
+              </Col>
+              <Col xs="5">
+                <div className="landingPageOption">
+                  <Link className="textFont">Create<br></br>Itinerary</Link>
+                  <img src="https://img.icons8.com/ios/50/000000/wish-list.png"></img>
+                </div>
+              </Col>
+            </Row>
+            {/* <StartBrowsing /> */}
+            {/* <p className="PopularHeader">Popular MYtineraries:</p>
+            <PopularItineraries></PopularItineraries> */}
         </div>
       );
   }

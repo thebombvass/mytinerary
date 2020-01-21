@@ -82,7 +82,7 @@ class PostResource extends Component {
     //if using this for Create Account Post 
     createAccountDataObjectCreator(url) {
         //validate that email exists and that password is appropriate length
-        if (this.props.newPassword.length>8 && this.props.newEmail.lenght>0) {
+        if ((this.props.newPassword.length>8) && (this.props.newEmail.length>0)) {
             const dataObject = {"email": this.props.newEmail, "password": this.props.newPassword, "profPicUrl": this.props.newProfPicUrl}
             this.makePost(url, dataObject);
         } else {

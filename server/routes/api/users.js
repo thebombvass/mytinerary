@@ -39,7 +39,7 @@ router.get(
 
 // @route   GET api/users/google
 // @desc    get the user signed in using google
-// @access  public
+// @access  public 
 router.get("/google",
     passport.authenticate("google", { scope: ['profile', 'email'] }),
 )
@@ -47,7 +47,7 @@ router.get("/google",
 // @route   GET api/users/google/redirect
 // @desc    get the user signed in using google
 // @access  public
-router.get("/google/redirect", passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+router.get("/google/redirect", passport.authenticate('google', { failureRedirect: 'http://localhost:3000/login' }), (req, res) => {
         console.log('you reached callback URI')
         console.log(req.user)
         //successful login

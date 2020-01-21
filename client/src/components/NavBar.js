@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink, Dropdown, DropdownItem, DropdownToggle, DropdownMenu  } from 'reactstrap';
+import { Container, Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink,} from 'reactstrap';
 import '../assets/App.css'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom';
@@ -33,60 +33,53 @@ class NavBar extends Component {
     render() {
 
         return (
-            <Container>
-            <Row>
-                <Col xs="4">
-                    { this.props.currentUsername.length>0 ? (
-                    <Nav>
-                        <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown.bind(this)}>
-                        <DropdownToggle nav caret>
-                            <img className='navProfilePicture' src={this.props.currentProfPicUrl} alt="Profile" ></img> Account
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            <DropdownItem>Welcome {this.props.currentUsername}!</DropdownItem>
-                            <DropdownItem><Link to="/createaccount">My Profile (currently routing to create)</Link></DropdownItem>
-                            <DropdownItem onClick={this.logOut.bind(this)}>Log Out</DropdownItem>
-                        </DropdownMenu>
-                        </Dropdown>
-                    </Nav>
-                    ) : (
-                    <Nav>
-                        <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown.bind(this)}>
-                        <DropdownToggle nav caret>
-                            <img className='navProfilePicture' src={this.props.currentProfPicUrl} alt="Profile"></img> Account
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            <DropdownItem>You are currently not logged in.</DropdownItem>
-                            <DropdownItem><Link to="/login">Log In</Link></DropdownItem>
-                            <DropdownItem><Link to="/createaccount">Create an Account</Link></DropdownItem>
-                        </DropdownMenu>
-                        </Dropdown>
-                    </Nav>
-                    )}
-                </Col>
-
-                <Col>
-                </Col>
-
-                <Col xs="3">
+        <div>
+            <Container className="NavBar">
                 <Navbar color="faded" light>
                     <NavbarToggler onClick={this.toggleNavbar.bind(this)} className="mr-2" />
                     <Collapse isOpen={this.state.collapsed} navbar>
                         <Nav>
-                        <NavItem>
-                            <NavLink tag={Link} to="/cities">Cities</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink tag={Link} to="/">Home</NavLink>
-                        </NavItem>
+                        { this.props.currentUsername.length>0 ? (
+                            <div>
+                            <NavItem> 
+                                <br></br>
+                                <img className='navProfilePicture' src={this.props.currentProfPicUrl} alt="profile"></img>
+                                <Link to="/createaccount" className="linkFont"> View Profile</Link>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink tag={Link} to="/" className="linkFont">Home</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink tag={Link} to="/cities" className="linkFont">Cities</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink tag={Link} to="/" className="linkFont">Create Itinerary</NavLink>
+                            </NavItem>
+                            <NavItem onClick={this.logOut.bind(this)}>
+                                <NavLink tag={Link} to="/" className="linkFont">Log Out</NavLink>
+                            </NavItem>
+                            </div>
+                        ) : (
+                            <div>
+                            <NavItem>
+                                <NavLink tag={Link} to="/" className="linkFont">Home</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink tag={Link} to="/cities" className="linkFont">Cities</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink tag={Link} to="/login" className="linkFont">Log In</NavLink>
+                            </NavItem>
+                            </div>
+                        )}
                         </Nav>
                     </Collapse>
                 </Navbar>
-                </Col>
-
-            </Row>
-            
-          </Container>
+            </Container>
+            <div className="logo">
+              <h1>MYtinerary</h1>
+            </div>
+        </div>
         )
     }
 

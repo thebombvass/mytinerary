@@ -65,7 +65,9 @@ module.exports = {
         });
         newUser.save().then(user => {
                 console.log(user)
-            }).then(user => {return done(null, user)})
+            }).then(user => {
+              return done(null, user)
+            })
             .catch(err => console.log(err));
         }
       })
