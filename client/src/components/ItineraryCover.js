@@ -11,8 +11,18 @@ class ItineraryCover extends Component {
             backgroundImage: 'url('+this.props.imageUrl+')',
         }
         return(
-            <div className={this.props.styleInfo} style={divStyle}>
-                <p>{this.props.cityName}</p>
+            <div className={this.props.styleInfo}> 
+                <div className="itineraryPhoto" style={divStyle}>
+                </div>
+                <div className="itineraryCoverDescription">
+                    <p>{this.props.cityName}</p>
+                    <div>
+                        <img src="https://img.icons8.com/ios/50/000000/two-tickets.png"></img>
+                        {this.props.activCounter}
+                        <img src="https://img.icons8.com/ios/50/000000/wish-list.png"></img>
+                        {this.props.itinCounter}
+                    </div>
+                </div>
             </div>
         )
     }

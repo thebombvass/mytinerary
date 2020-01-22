@@ -11,7 +11,7 @@ const initState = {
     newPassword: "",
     newProfPicUrl: "",
     email: "",
-    password: "",
+    password: "", 
     currentUsername: "",
     currentProfPicUrl: "https://www.pinclipart.com/picdir/middle/371-3712002_png-file-svg-person-icon-black-png-clipart.png",
 }

@@ -66,18 +66,24 @@ class Cities extends Component {
     return (
       <div>
       <NavBar></NavBar>
-      
-      <Container>
-        
-        <h1>Cities</h1>
+      {/* you need to add an 'if logged in can add cities, if not then nuh uh' */}
 
+      <Container>
+        <div className="citiesHeader">
+        <img src="https://img.icons8.com/ios/50/000000/city-buildings.png"></img>
+        <h1>Cities</h1>
+        </div>
 
         <div className="citiesForms">
           <div className="searchCities">
             <img src="https://img.icons8.com/material-sharp/24/000000/search.png"></img>
             <input id="searchBar" type="text" value ={this.state.search} onChange={this.updateSearch.bind(this)}></input>
           </div>
-          <Button id="addClassButton" className="button" onClick={this.toggleAddCityForm.bind(this)}>Add City</Button>
+
+          { this.props.currentUsername.length>0 ? (
+          <Button id="addClassButton" className="button" onClick={this.toggleAddCityForm.bind(this)}>Add City</Button>) 
+          : (<br></br>) 
+          }
         </div>
           <Collapse isOpen={this.state.isToggleOn}>
             <Card>
@@ -98,26 +104,20 @@ class Cities extends Component {
               </CardBody>
             </Card>
           </Collapse>
+          <br></br>
               
-        <ListGroup>
           {this.props.loading ? <p>loading...</p> : 
-          <TransitionGroup className="cities-list">
-            {this.props.filteredResults.map(({ id, name, country, imageUrl, itinerariesUrl}) => (
-              <CSSTransition key={id} timeout={500} classNames="fade">
-                <ListGroupItem>
+            this.props.filteredResults.map(({ id, name, country, imageUrl, itinerariesUrl, activNum, itinNumber}) => (
                 <a href={itinerariesUrl}>
-                <ItineraryCover
+                <ItineraryCover key={id}
                 imageUrl = {imageUrl}
                 styleInfo={"CitiesList"}
                 cityName={name + ", " + country}
+                activCounter= {activNum}
+                itinCounter = {itinNumber}
                 ></ItineraryCover>
                 </a>
-                </ListGroupItem>
-              </CSSTransition>
             ))}
-          </TransitionGroup>
-          }
-        </ListGroup>
       </Container>
       </div>
     );
@@ -134,6 +134,7 @@ const mapStateToProps = (state) => {
     newCity: state.cities.newCity,
     newCountry: state.cities.newCountry,
     newUrl: state.cities.newUrl,
+    currentUsername: state.cities.currentUsername,
   }
 }
 
