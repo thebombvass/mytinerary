@@ -48,14 +48,6 @@ class CreateAccount extends Component {
                         <Label for="profpic">Profile Picture</Label>
                         <Input type="text" name="profpic" id="profpic" placeholder="please add it as a url" value ={this.props.newProfPicUrl} onChange={this.updateNewProfPicUrl.bind(this)} />
                     </FormGroup>
-                    {/* <FormGroup>
-                        <Label for="exampleFile">File</Label>
-                        <Input type="file" name="file" id="exampleFile" />
-                        <FormText color="muted">
-                        This is some placeholder block-level help text for the above input.
-                        It's a bit lighter and easily wraps to a new line.
-                        </FormText>
-                    </FormGroup> */}
                     <PostResource
                         url="http://localhost:5000/api/users/create"
                         parentComp = "createAccount"

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem , Collapse, Button, CardBody, Card} from 'reactstrap';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Container, Collapse, Button, CardBody, Card} from 'reactstrap';
 import { connect } from 'react-redux'
 
 //components

@@ -177,3 +177,165 @@ input {
   display: flex;
   justify-content: space-between;
 }
+
+#signInWithGoogle {
+  background-color: rgb(228, 230, 228);
+  box-shadow: 3px 3px rgb(224, 224, 224);
+  color: rgb(114, 113, 113);
+  font-weight: bold;
+  width: 350px;
+}
+
+#signInWithGoogle img{
+  height: 40px;
+  width: 40px;
+  float: left;
+
+}
+
+#signInWithEmail {
+  background-color: #0E3035;
+  box-shadow: 3px 3px rgb(224, 224, 224);
+  color: whitesmoke;
+  width: 350px;
+}
+
+#signInWithEmail img{
+  height: 40px;
+  width: 40px;
+  float: left;
+
+}
+
+#createAccountWithEmail {
+  background-color: #80d3c2;
+  box-shadow: 3px 3px rgb(224, 224, 224);
+  color: black;
+  width: 350px;
+  border-color: #609e92 !important;
+}
+
+#createAccountWithEmail img{
+  height: 40px;
+  width: 40px;
+  float: left;
+}
+
+#signInButtonsContainer Button{
+  margin-top: 40px;
+}
+
+#signInButtonsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.logInHeader {
+  display: flex;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.logInHeader img{
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.logInWithEmailForm {
+  position: absolute;
+  top: 200px;
+  right: 10px;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 400px;
+  padding: 0 20px;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 5px;
+}
+
+/* This fires as soon as the element enters the dorm */
+.emailLog-transition-enter,
+.emailLog-transition-appear {
+  /*We give the list the initial dimension of the list button*/
+  right: -400px;
+  color: transparent;
+}
+/* This is where we can add the transition*/
+.emailLog-transition-enter-active,
+.emailLog-transition-appear-active {
+  right: 10px;
+  background-color: white;
+  transition: all 400ms;
+}
+
+/* This fires as soon as the this.state.showList is false */
+.emailLog-transition-exit {
+  right: 10px;
+  background-color: white;
+}
+/* fires as element leaves the DOM*/
+.emailLog-transition-exit-active {
+  right: -400px;
+  color: transparent;
+  transition: all 400ms;
+}
+
+.logInSubmitButtonContainer {
+  position: relative;
+  left: 270px;
+}
+
+.logInBackButton {
+  position: relative;
+  bottom: 40px;
+  background-color: rgb(228, 230, 228);
+  color: black;
+}
+
+#thePostResourceButton {
+  background-color: black;
+}
+
+.createNewAccountForm {
+  position: absolute;
+  top: 170px;
+  right: 10px;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 400px;
+  padding: 0 20px;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 5px;
+}
+
+/* This fires as soon as the element enters the dorm */
+.newAcct-transition-enter,
+.newAcct-transition-appear {
+  /*We give the list the initial dimension of the list button*/
+  right: -400px;
+  color: transparent;
+}
+/* This is where we can add the transition*/
+.newAcct-transition-enter-active,
+.newAcct-transition-appear-active {
+  right: 10px;
+  background-color: white;
+  transition: all 400ms;
+}
+
+/* This fires as soon as the this.state.showList is false */
+.newAcct-transition-exit {
+  right: 10px;
+  background-color: white;
+}
+/* fires as element leaves the DOM*/
+.newAcct-transition-exit-active {
+  right: -400px;
+  color: transparent;
+  transition: all 400ms;
+}

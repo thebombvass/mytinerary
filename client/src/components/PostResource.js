@@ -101,7 +101,7 @@ class PostResource extends Component {
     render(){
         return (
             <Button 
-            color="dark" 
+            id="thePostResourceButton"
             style={{marginBottom: '2rem'}}
             onClick={()=> {
                 console.log('click')
