@@ -43,8 +43,10 @@ class NavBar extends Component {
                             <div>
                             <NavItem> 
                                 <br></br>
-                                <img className='navProfilePicture' src={this.props.currentProfPicUrl} alt="profile"></img>
-                                <Link to="/createaccount" className="linkFont"> View Profile</Link>
+                                <NavLink tag={Link} to="/createaccount" className="linkFont">
+                                    <img className='navProfilePicture' src={this.props.currentProfPicUrl} alt="profile"></img>
+                                    View Profile
+                                </NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink tag={Link} to="/" className="linkFont">Home</NavLink>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, FormText, Container, Button } from 'reactstrap';
 import { connect } from 'react-redux'
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CSSTransition, } from 'react-transition-group';
 
 //components
 import NavBar from './NavBar.js'
@@ -74,7 +74,7 @@ class LogIn extends Component {
             <div>
                 <NavBar></NavBar>
                 <Container className="logInHeader">
-                    <img src="https://img.icons8.com/android/24/000000/user.png"></img>
+                    <img src="https://img.icons8.com/android/24/000000/user.png" alt="account icon"></img>
                     <h2>Log In</h2>
                 </Container>
                 {/* buttons for different login options */}
@@ -84,7 +84,7 @@ class LogIn extends Component {
                     this.componentToggle(1)
                 }}
                 >
-                    <img src="https://img.icons8.com/color/48/000000/google-logo.png"></img>
+                    <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="google icon"></img>
                     Log in with Google
                 </Button>
                 <Button id="signInWithEmail"
@@ -92,7 +92,7 @@ class LogIn extends Component {
                     this.componentToggle(2)
                 }}
                 >
-                    <img src="https://img.icons8.com/color/24/000000/secured-letter.png"></img>
+                    <img src="https://img.icons8.com/color/24/000000/secured-letter.png" alt="email icon"></img>
                     Log in with email
                 </Button>
                 <Button id="createAccountWithEmail"
@@ -100,7 +100,7 @@ class LogIn extends Component {
                     this.componentToggle(3)
                 }}
                 >
-                    <img src="https://img.icons8.com/android/24/000000/add-user-male.png"></img>
+                    <img src="https://img.icons8.com/android/24/000000/add-user-male.png" alt="new acount icon"></img>
                     Create new account with email
                 </Button>
 
@@ -119,7 +119,7 @@ class LogIn extends Component {
                         this.componentToggle(0)
                     }}
                     >
-                        <img src="https://img.icons8.com/android/24/000000/back.png"></img>
+                        <img src="https://img.icons8.com/android/24/000000/back.png" alt="back arrow icon"></img>
                         Back
                     </Button>
                     <Form>
@@ -160,7 +160,7 @@ class LogIn extends Component {
                         this.componentToggle(0)
                     }}
                     >
-                        <img src="https://img.icons8.com/android/24/000000/back.png"></img>
+                        <img src="https://img.icons8.com/android/24/000000/back.png" alt="back arrow icon"></img>
                         Back
                     </Button>
                     

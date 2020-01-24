@@ -17,9 +17,9 @@ class ItineraryCover extends Component {
                 <div className="itineraryCoverDescription">
                     <p>{this.props.cityName}</p>
                     <div>
-                        <img src="https://img.icons8.com/ios/50/000000/two-tickets.png"></img>
+                        <img src="https://img.icons8.com/ios/50/000000/two-tickets.png" alt="activity icon"></img>
                         {this.props.activCounter}
-                        <img src="https://img.icons8.com/ios/50/000000/wish-list.png"></img>
+                        <img src="https://img.icons8.com/ios/50/000000/wish-list.png" alt="itinerar icon"></img>
                         {this.props.itinCounter}
                     </div>
                 </div>

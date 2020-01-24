@@ -142,7 +142,7 @@ router.post('/create', (req, res) => {
             profPicUrl: req.body.profPicUrl,
         });
         newUser.save().then(user => {
-                res.json(user)
+                res.json({data: user, newacct: "yes"})
             })
             .catch(err => console.log(err));
     })

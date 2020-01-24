@@ -9,7 +9,6 @@ import { Container, Row, Col,  } from 'reactstrap';
 
 //Components
 import NavBar from './NavBar'
-import PopularItineraries from './PopularItineraries'
 
 //action imports
 import { saveLoggedInUser } from '../store/actions/cityActions';
@@ -92,7 +91,7 @@ class LandingPage extends Component {
             <Row className="landingPageOptions">
               <Col xs="5">
                 <div className="landingPageOption">
-                  <img src="https://img.icons8.com/ios/50/000000/city-buildings.png"></img>
+                  <img src="https://img.icons8.com/ios/50/000000/city-buildings.png" alt="city icon"></img>
                   <Link to="/cities" className="textFont">Browse<br></br>Cities</Link>
                 </div>
               </Col>
@@ -100,8 +99,8 @@ class LandingPage extends Component {
               </Col>
               <Col xs="5">
                 <div className="landingPageOption">
-                  <Link className="textFont">Create<br></br>Itinerary</Link>
-                  <img src="https://img.icons8.com/ios/50/000000/wish-list.png"></img>
+                  <Link className="textFont" to="#">Create<br></br>Itinerary</Link>
+                  <img src="https://img.icons8.com/ios/50/000000/wish-list.png" alt="itinerary icon"></img>
                 </div>
               </Col>
             </Row>
