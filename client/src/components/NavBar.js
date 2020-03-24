@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink,} from 'reactstrap';
+import { Container, Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink, NavbarBrand, } from 'reactstrap';
 import '../assets/App.css'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom';
@@ -35,15 +35,16 @@ class NavBar extends Component {
         return (
         <div>
             <Container className="NavBar">
-                <Navbar color="faded" light>
-                    <NavbarToggler onClick={this.toggleNavbar.bind(this)} className="mr-2" />
+                <Navbar dark>
+                <NavbarBrand className="logo">MYtinerary</NavbarBrand>
+                    <NavbarToggler onClick={this.toggleNavbar.bind(this)} className="mr-2"/>
                     <Collapse isOpen={this.state.collapsed} navbar>
                         <Nav>
                         { this.props.currentUsername.length>0 ? (
                             <div>
                             <NavItem> 
                                 <br></br>
-                                <NavLink tag={Link} to="/createaccount" className="linkFont">
+                                <NavLink tag={Link} to="/myprofile" className="linkFont">
                                     <img className='navProfilePicture' src={this.props.currentProfPicUrl} alt="profile"></img>
                                     View Profile
                                 </NavLink>
@@ -78,9 +79,9 @@ class NavBar extends Component {
                     </Collapse>
                 </Navbar>
             </Container>
-            <div className="logo">
+            {/* <div className="logo">
               <h1>MYtinerary</h1>
-            </div>
+            </div> */}
         </div>
         )
     }

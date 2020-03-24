@@ -13,7 +13,6 @@ const users = require('./routes/api/users')
 // const auth = require('./routes/api/auth')
 
 
-
 //app defined
 const app = express();
 

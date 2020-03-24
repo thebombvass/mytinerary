@@ -8,6 +8,7 @@ import Cities from './Cities.js';
 import OneCityMultiItin from './OneCityMultiItin.js';
 import CreateAccount from './CreateAccount'
 import LogIn from './LogIn.js';
+import MyProfile from './MyProfile.js'
 
 //css imports
 import '../assets/App.css'
@@ -35,6 +36,9 @@ export default class App extends Component {
           </Switch>
           <Switch>
              <Route path='/login' component={LogIn} />
+          </Switch>
+          <Switch>
+             <Route path='/myprofile' component={MyProfile} />
           </Switch>
         </div>
       </BrowserRouter>

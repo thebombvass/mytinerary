@@ -12,6 +12,7 @@ class OneCityMultiItin extends Component {
     state = {
         itinerariesData: [],
         loadinghere: true,
+        cityImageStyle: {},
       }
       
 
@@ -20,8 +21,9 @@ class OneCityMultiItin extends Component {
         //To Do: is this used anywhere????
         let cityName = ""
         for (var i=0; i < thisCityUrl.length; i++) {
-            if (thisCityUrl.charAt(i) === "%20") {
+            if (thisCityUrl.charAt(i) === "%") {
                 cityName += " ";
+                i += 2;
             } else {
                 cityName += thisCityUrl.charAt(i);
             }
@@ -31,6 +33,15 @@ class OneCityMultiItin extends Component {
                 this.state.itinerariesData = await response.json()
                 console.log(this.state.itinerariesData)
                 this.setState({loadinghere: false})
+                this.props.cities.forEach((city) => {
+                    if(city.name === cityName) {
+                        this.setState({cityImageStyle: 
+                        {
+                            backgroundImage: 'url('+city.imageUrl+')'
+                        }
+                        })
+                    }
+                })
             })
             .catch((err)=> {
                 console.log(err)
@@ -41,24 +52,25 @@ class OneCityMultiItin extends Component {
         return(
             <div>
             <NavBar></NavBar>
+            <div id="singleCityCover" style={this.state.cityImageStyle}>
+            </div>
+            
             <Container>
-                <ListGroup>
+                <h4>Activities:</h4>
+                <div horizontal className="horizontalScroll">
                 {this.state.loadinghere ? <p>loading...</p> : 
-                <TransitionGroup className="cities-list">
-                    {this.state.itinerariesData.map(({ id, title, profPicUrl }) => (
-                    <CSSTransition key={id} timeout={500} classNames="fade">
-                        <ListGroupItem>
+                    this.state.itinerariesData.map(({ id, title, profPicUrl }) => (
+                        <div className="horizontalScrollDiv">
                         <ItineraryCover
+                        key={id}
                         imageUrl = {profPicUrl}
                         styleInfo={"OneCityMultiItin"}
                         cityName={title}
                         ></ItineraryCover>
-                        </ListGroupItem>
-                    </CSSTransition>
+                        </div>
                     ))}
-                </TransitionGroup>
-                }
-                </ListGroup>
+                </div>
+                <h4>Itineraries:</h4>
             </Container>
             </div>
         )

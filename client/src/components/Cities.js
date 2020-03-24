@@ -69,13 +69,13 @@ class Cities extends Component {
 
       <Container>
         <div className="citiesHeader">
-        <img src="https://img.icons8.com/ios/50/000000/city-buildings.png"></img>
+        <img src="https://img.icons8.com/ios/50/000000/city-buildings.png" alt="cities icon"></img>
         <h1>Cities</h1>
         </div>
 
         <div className="citiesForms">
           <div className="searchCities">
-            <img src="https://img.icons8.com/material-sharp/24/000000/search.png"></img>
+            <img src="https://img.icons8.com/material-sharp/24/000000/search.png" alt="search"></img>
             <input id="searchBar" type="text" value ={this.state.search} onChange={this.updateSearch.bind(this)}></input>
           </div>
 
@@ -94,12 +94,14 @@ class Cities extends Component {
                 <br></br><label htmlFor="addImage"> Image URL: </label>
                 <input id="addImage" type="text" value ={this.props.newUrl} onChange={this.updateNewUrl.bind(this)}></input>
                 <br></br>
-                
+
                 <PostResource 
                   url="http://localhost:5000/api/cities"
                   parentComp = "cities"
                   >  
                 </PostResource>
+
+                <Button id="closeAddClass" className="button" onClick={this.toggleAddCityForm.bind(this)}>Cancel</Button>
               </CardBody>
             </Card>
           </Collapse>
